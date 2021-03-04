@@ -1,4 +1,4 @@
-食譜(shípǔ) is a program that scrapes data of your favorite recipes on cookpad and saves the scraped data in a file.
+食譜(shípǔ) is a program that scrapes data of your favorite recipe(s) on cookpad and saves the cleaned data in a file.
 
 I am still in the process of its design, but this will be useful because:
 
@@ -7,4 +7,11 @@ I am still in the process of its design, but this will be useful because:
     2. You won't have to worry about any ads or trackers following you around.
     3. You won't have to see all other unnecessary information.
     4. You can customize it the way you like.
+    5. You will be able to see those recipes offline.
+
+
+Todo:
+
+ [ ] Formatting
+ [ ] Add commands for Unix and Windows to open the file, but maybe not necessary.
 
