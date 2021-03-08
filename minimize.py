@@ -23,7 +23,6 @@ def get_recipe_context(url):
     if r.status_code == 200:
         print('Success!')
         soup = BeautifulSoup(r.content, 'html.parser')
-
         # CLEANING CLEANING CLEANING:
         title = soup.find(class_='recipe-title').text.strip()
         photo_url = soup.find(id='main-photo').img.attrs['src']
@@ -45,7 +44,6 @@ def get_recipe_context(url):
             'ingredients': ingredients,
             'steps': steps,
         }
-
     else:
         print('Something went wrong :(')
 
@@ -76,7 +74,6 @@ def main():
     # Get environment varibale:
     url = sys.argv[1]  # 1 https://cookpad.com/recipe/1847041 - メンチカツ
     print(f'{url}')
-
     recipe_ctx = get_recipe_context(url)
     generate_recipe_page(recipe_ctx)
     update_recipe_list(recipe_ctx['title'])
