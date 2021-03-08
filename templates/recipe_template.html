@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            background-color: #9eadc8;
+        }
+
+        .content {
+            width: 768px;
+            margin: auto;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 33px;
+        }
+
+        #title {
+            text-align: center;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        table {
+            width: 512px;
+            margin: auto;
+        }
+
+        th {
+            text-align: left;
+            font-size: 1.1em;
+            text-decoration-line: underline;
+        } 
+
+        #steps {
+            padding: 15px;
+        }
+
+        #steps li {
+            padding: 20px;
+            margin: 10px 0;
+        }
+
+        .even {
+            background-color: #f4f1de;
+        }
+    </style>
+</head>
+<body>
+    <div class=content>
+        <div id="title">
+            <h2>{{ title }}</h2>
+            <img src="{{ photo_url }}" alt="{{ title }}" width="192px" height="256px">
+        </div>
+
+        <hr>
+        <fieldset>
+            <legend>Ingredients</legend>
+            <table>
+                <tr>
+                  <th>NAME</th>
+                  <th>AMOUNT</th>
+                </tr>
+                {% for ingredient in ingredients %}
+                  <tr>
+                    <td width="64%">{{ ingredient[0] }}</td>
+                    <td width="36%">{{ ingredient[1] }}</td>
+                  </tr>
+                {% endfor %}
+            </table> 
+        </fieldset>
+        
+        <hr>
+        <div id="steps">
+            <ol>
+                {% for step in steps %}
+                    {% if loop.index % 2 != 0 %}
+                        <li>{{ step }}</li>
+                    {% else %}
+                        <li class="even">{{ step }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

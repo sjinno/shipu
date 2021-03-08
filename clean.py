@@ -1,47 +1,50 @@
-""" import os
-import requests
 from bs4 import BeautifulSoup
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+import requests
 
 
-url = 'https://cookpad.com/recipe/1043219'  # スンドゥブ
+import sys
 
+
+url = sys.argv[1]  # 1 https://cookpad.com/recipe/1847041 - メンチカツ
+print(f'{url}')
+
+# SCRAPE DATA AND PARSE IT:
 r = requests.get(url, auth=('user', 'pass'))
-print(r.status_code)
-
 soup = BeautifulSoup(r.content, 'html.parser')
-recipe = soup.find(id='recipe')
+
+# CLEANING:
+title = soup.find(class_='recipe-title').text.strip()
+photo_url = soup.find(id='main-photo').img.attrs['src']
+
+# == CLEANING INGREDIENTS STARTS HERE ==
+names = [name.text for name in soup.find(
+    id='ingredients').find_all(class_='name')]
+amounts = [amount.text for amount in soup.find(
+    id='ingredients').find_all(class_='amount')]
+ingredients = list(zip(names, amounts))
+# == CLEANING INGREDIENTS ENDS HERE ==
+
+steps = [step.text.strip() for step in soup.find_all(class_='step_text')]
+
+# DONE CLEANING :)
 
 
-txt = recipe.txt
-
-txt.replace('\n', ' ').split()
-
-
-print(txt)
-
-
-# with open('output.html', 'w', encoding='utf-8') as f:
-#     f.write(str(recipe.prettify()))
-
-
-# os.system('xdg-open output.html')
- """
-
-# from jinja2 import Template
-
-# template = Template('Hello, {{ name }}!')
-# print(template.render(name='John Doe'))
-
-
-from jinja2 import Environment, PackageLoader, select_autoescape, FileSystemLoader
 env = Environment(
     loader=FileSystemLoader('./templates'),
     autoescape=select_autoescape(['html', 'xml'])
 )
 
-template = env.get_template('mytemplate.html')
 
-# print(template.render(the='variables', go='here'))
+template = env.get_template('recipe_template.html')
+context = {
+    'title': title,
+    'photo_url': photo_url,
+    'ingredients': ingredients,
+    'steps': steps,
+}
 
-with open('out.html', 'w') as f:
-    f.write(template.render(the='variables', go='here'))
+
+output_file = title + '.html'
+with open(output_file, 'w') as f:
+    f.write(template.render(context))
