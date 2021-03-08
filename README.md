@@ -40,3 +40,8 @@ I am still in the process of its design, but this may be useful because:
    ```
    python clean.py your-fav-reciepe-url
    ```
+
+   ```
+   # e.g.
+   python clean.py https://cookpad.com/recipe/1847041
+   ```
