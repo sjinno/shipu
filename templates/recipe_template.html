@@ -49,7 +49,7 @@
         }
 
         .even {
-            background-color: #f4f1de;
+            background-color: #ccd5ae;
         }
     </style>
 </head>
@@ -69,10 +69,18 @@
                   <th>AMOUNT</th>
                 </tr>
                 {% for ingredient in ingredients %}
-                  <tr>
-                    <td width="64%">{{ ingredient[0] }}</td>
-                    <td width="36%">{{ ingredient[1] }}</td>
-                  </tr>
+                    {% if loop.index % 2 != 0 %}
+                      <tr>
+                        <td width="64%">{{ ingredient[0] }}</td>
+                        <td width="36%">{{ ingredient[1] }}</td>
+                      </tr>
+                    {% else %}
+                      <tr>
+                        <td class="even" width="64%">{{ ingredient[0] }}</td>
+                        <td class="even" width="36%">{{ ingredient[1] }}</td>
+                      </tr>
+                    {% endif %}
+                  
                 {% endfor %}
             </table> 
         </fieldset>
