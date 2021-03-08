@@ -11,9 +11,9 @@ I am still in the process of its design, but this may be useful because:
 
 ### Todo:
 
-- [ ] Oraganize code into functions and classes.
+- [x] Oraganize code into functions and classes.
 - [ ] Add features: `recipe-with-photos` if available.
-- [ ] Create `index.html` to list all the saved recipes for easy access.
+- [x] Create `index.html` to list all the saved recipes for easy access.
 
 ### Note
 
@@ -30,7 +30,7 @@ I am still in the process of its design, but this may be useful because:
    After that, simply go copy the url of your favorite recipe from クックパッド and run
 
    ```
-   pipenv run python clean.py your-fav-reciepe-url
+   pipenv run python minimize.py your-fav-reciepe-url
    ```
 
 2. If you do not have `pipenv` installed, then you can use `virtualenv`.
@@ -38,10 +38,10 @@ I am still in the process of its design, but this may be useful because:
    So, you would `virtualenv env`, `source ./env/bin/activate`, `pip install -r requirements,txt`, and run
 
    ```
-   python clean.py your-fav-reciepe-url
+   python minimize.py your-fav-reciepe-url
    ```
 
    ```
    # e.g.
-   python clean.py https://cookpad.com/recipe/1847041
+   python minimize.py https://cookpad.com/recipe/1847041
    ```
