@@ -25,13 +25,13 @@
                 {% for ingredient in ingredients %}
                     {% if loop.index % 2 != 0 %}
                       <tr>
-                        <td class="odd" width="64%">{{ ingredient[0] }}</td>
-                        <td class="odd" width="36%">{{ ingredient[1] }}</td>
+                          <td class="odd td-1">{{ ingredient[0] }}</td>
+                          <td class="odd td-2">{{ ingredient[1] }}</td>
                       </tr>
                     {% else %}
                       <tr>
-                        <td class="even" width="64%">{{ ingredient[0] }}</td>
-                        <td class="even" width="36%">{{ ingredient[1] }}</td>
+                        <td class="even td-1">{{ ingredient[0] }}</td>
+                        <td class="even td-2">{{ ingredient[1] }}</td>
                       </tr>
                     {% endif %}
                   
