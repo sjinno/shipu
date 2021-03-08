@@ -22,6 +22,11 @@
             text-align: center;
         }
 
+        fieldset {
+            margin: 14px 28px;
+            padding: 15px;
+        }
+
         legend {
             font-weight: bold;
             font-size: 1.5em;
@@ -39,11 +44,11 @@
         } 
 
         #steps {
-            padding: 15px;
+            padding: 0 15px;
         }
 
         #steps li {
-            padding: 20px;
+            padding: 10px 20px;
             margin: 10px 0;
             border-radius: 16px;
         }
@@ -60,7 +65,7 @@
             <img src="{{ photo_url }}" alt="{{ title }}" width="192px" height="256px">
         </div>
 
-        <hr>
+        <br>
         <fieldset>
             <legend>Ingredients</legend>
             <table>
@@ -85,18 +90,22 @@
             </table> 
         </fieldset>
         
-        <hr>
-        <div id="steps">
-            <ol>
-                {% for step in steps %}
-                    {% if loop.index % 2 != 0 %}
-                        <li>{{ step }}</li>
-                    {% else %}
-                        <li class="even">{{ step }}</li>
-                    {% endif %}
-                {% endfor %}
-            </ol>
-        </div>
+        <br>
+        <fieldset>
+            <legend>Steps</legend>
+            <div id="steps">
+                <ol>
+                    {% for step in steps %}
+                        {% if loop.index % 2 != 0 %}
+                            <li>{{ step }}</li>
+                        {% else %}
+                            <li class="even">{{ step }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
+        </fieldset>
+        
     </div>
 </body>
 </html>
