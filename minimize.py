@@ -1,14 +1,13 @@
+# std:
+import os
+import sys
 # Third party libraries:
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import requests
 
-# std
-import os
-import sys
 
-
-# Get template ready:
+# Get templates ready:
 env = Environment(
     loader=FileSystemLoader('./templates'),
     autoescape=select_autoescape(['html', 'xml']),
@@ -17,8 +16,8 @@ template = env.get_template('recipe_template.html')
 index_temp = env.get_template('index.html')
 
 
+# Scraping happens here.
 def get_recipe_context(url):
-    # SCRAPE DATA AND PARSE IT:
     r = requests.get(url, auth=('user', 'pass'))
     if r.status_code == 200:
         print('Success!')
@@ -37,13 +36,13 @@ def get_recipe_context(url):
         steps = [step.text.strip()
                  for step in soup.find_all(class_='step_text')]
         # DONE CLEANING :)
-
-        return {
+        ctx = {
             'title': title,
             'photo_url': photo_url,
             'ingredients': ingredients,
             'steps': steps,
         }
+        return ctx
     else:
         print('Something went wrong :(')
 
@@ -71,9 +70,6 @@ def update_index_page(recipe_ls):
 
 
 def main():
-    # Get environment varibale:
-    url = sys.argv[1]  # 1 https://cookpad.com/recipe/1847041 - メンチカツ
-    print(f'{url}')
     recipe_ctx = get_recipe_context(url)
     generate_recipe_page(recipe_ctx)
     update_recipe_list(recipe_ctx['title'])
@@ -82,4 +78,7 @@ def main():
 
 
 if __name__ == '__main__':
+    # Get environment varibale:
+    url = sys.argv[1]  # 1 https://cookpad.com/recipe/1847041 - メンチカツ
+    print(f'{url}')
     main()

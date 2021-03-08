@@ -6,7 +6,7 @@ I am still in the process of its design, but this may be useful because:
 
 2. You will not have to worry about any ads or trackers.
 3. You will not have to see all other unnecessary garbage.
-4. You can customize it (`recipe_template.html`) the way you like.
+4. You can customize its styles (`styles.css`) the way you like.
 5. You will be able to access to those recipes offline! :)
 
 ### Todo:
