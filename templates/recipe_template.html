@@ -53,6 +53,10 @@
             border-radius: 16px;
         }
 
+        .odd {
+            background-color: #fefae0;
+        }
+
         .even {
             background-color: #ccd5ae;
         }
@@ -76,8 +80,8 @@
                 {% for ingredient in ingredients %}
                     {% if loop.index % 2 != 0 %}
                       <tr>
-                        <td width="64%">{{ ingredient[0] }}</td>
-                        <td width="36%">{{ ingredient[1] }}</td>
+                        <td class="odd" width="64%">{{ ingredient[0] }}</td>
+                        <td class="odd" width="36%">{{ ingredient[1] }}</td>
                       </tr>
                     {% else %}
                       <tr>
@@ -97,7 +101,7 @@
                 <ol>
                     {% for step in steps %}
                         {% if loop.index % 2 != 0 %}
-                            <li>{{ step }}</li>
+                            <li class="odd">{{ step }}</li>
                         {% else %}
                             <li class="even">{{ step }}</li>
                         {% endif %}
