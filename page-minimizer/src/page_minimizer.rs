@@ -100,9 +100,9 @@ fn get_steps(fragment: &Html) -> Vec<String> {
         .select(&step_selector)
         .map(|step| {
             if let Some(s) = step.select(&a_selector).next() {
-                s.inner_html()
+                s.inner_html().replace("<br>", "")
             } else {
-                step.inner_html()
+                step.inner_html().replace("<br>", "")
             }
         })
         .collect()
