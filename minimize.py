@@ -5,6 +5,7 @@ import sys
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import requests
+import page_minimizer
 
 
 # Get templates ready:
@@ -16,35 +17,35 @@ template = env.get_template('recipe_template.html')
 index_temp = env.get_template('index.html')
 
 
-# Scraping happens here.
-def get_recipe_context(url):
-    r = requests.get(url, auth=('user', 'pass'))
-    if r.status_code == 200:
-        print('Success!')
-        soup = BeautifulSoup(r.content, 'html.parser')
-        # CLEANING CLEANING CLEANING:
-        title = soup.find(class_='recipe-title').text.strip()
-        photo_url = soup.find(id='main-photo').img.attrs['src']
-        # == CLEANING INGREDIENTS STARTS HERE ==
-        names = [name.text for name in soup.find(
-            id='ingredients').find_all(class_='name')]
-        amounts = [
-            amount.text for amount in soup.find(id='ingredients').find_all(class_='amount')
-        ]
-        ingredients = list(zip(names, amounts))
-        # == CLEANING INGREDIENTS ENDS HERE ==
-        steps = [step.text.strip()
-                 for step in soup.find_all(class_='step_text')]
-        # DONE CLEANING :)
-        ctx = {
-            'title': title,
-            'photo_url': photo_url,
-            'ingredients': ingredients,
-            'steps': steps,
-        }
-        return ctx
-    else:
-        print('Something went wrong :(')
+# # Scraping happens here.
+# def get_recipe_context(url):
+#     r = requests.get(url, auth=('user', 'pass'))
+#     if r.status_code == 200:
+#         print('Success!')
+#         soup = BeautifulSoup(r.content, 'html.parser')
+#         # CLEANING CLEANING CLEANING:
+#         title = soup.find(class_='recipe-title').text.strip()
+#         photo_url = soup.find(id='main-photo').img.attrs['src']
+#         # == CLEANING INGREDIENTS STARTS HERE ==
+#         names = [name.text for name in soup.find(
+#             id='ingredients').find_all(class_='name')]
+#         amounts = [
+#             amount.text for amount in soup.find(id='ingredients').find_all(class_='amount')
+#         ]
+#         ingredients = list(zip(names, amounts))
+#         # == CLEANING INGREDIENTS ENDS HERE ==
+#         steps = [step.text.strip()
+#                  for step in soup.find_all(class_='step_text')]
+#         # DONE CLEANING :)
+#         ctx = {
+#             'title': title,
+#             'photo_url': photo_url,
+#             'ingredients': ingredients,
+#             'steps': steps,
+#         }
+#         return ctx
+#     else:
+#         print('Something went wrong :(')
 
 
 def generate_recipe_page(ctx):
@@ -70,9 +71,15 @@ def update_index_page(recipe_ls):
 
 
 def main():
-    recipe_ctx = get_recipe_context(url)
+    ctx = page_minimizer.get_recipe_context(url)
+    recipe_ctx = {
+        'title': ctx.title,
+        'photo_url': ctx.photo_url,
+        'ingredients': ctx.ingredients,
+        'steps': ctx.steps,
+    }
     generate_recipe_page(recipe_ctx)
-    update_recipe_list(recipe_ctx['title'])
+    update_recipe_list(ctx.title)
     recipe_ls = get_recipe_list()
     update_index_page(recipe_ls)
 

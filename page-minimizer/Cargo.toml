@@ -1,0 +1,22 @@
+[package]
+authors = ["Shohei Jinno <shohei.jinno@gmail.com>"]
+edition = "2018"
+name = "page-minimizer"
+version = "0.1.0"
+
+[lib]
+name = "page_minimizer"
+# "cdylib" is necessary to produce a shared library for Python to import from.
+#
+# Downstream Rust code (including code in `bin/`, `examples/`, and `tests/`) will not be able
+# to `use string_sum;` unless the "rlib" or "lib" crate type is also included, e.g.:
+# crate-type = ["cdylib", "rlib"]
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+features = ["extension-module"]
+version = "0.13.2"
+
+[dependencies]
+reqwest = {version = "0.11.0", features = ["blocking"]}
+scraper = "0.12.0"
