@@ -45,3 +45,13 @@ I am still in the process of its design, but this may be useful because:
    # e.g.
    python minimize.py https://cookpad.com/recipe/1847041
    ```
+
+### Update
+
+Since I attempted a different implementation using PyO3, **usage** is a bit different. You will need **_[Rust](https://www.rust-lang.org/learn/get-started)_** installed on your system in order to build `page-minimizer` with `cargo build --release`, for I am not including its `.so` file.
+
+Then, you will have to rename `libpage_minimizer.so` to `page_minimizer.so` and move the file to the source directory where `minimize.py` resides in.
+
+With that being done, you should be able to run it following the **Usage** section...
+
+If that sounds annoying (it would at least be annoying to me :P), `git checkout f3326bf` and you should be able to ignore these steps.
