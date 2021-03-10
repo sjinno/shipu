@@ -54,4 +54,4 @@ Then, you will have to rename `libpage_minimizer.so` to `page_minimizer.so` and 
 
 With that being done, you should be able to run it following the **Usage** section...
 
-If that sounds annoying (It would at least be annoying to me :P), `git checkout f3326bf` and you should be able to ignore these steps.
+If that sounds annoying (It would at least be annoying to me :P), alternatively you can simply `git checkout python` and you should be able to ignore these steps and just follow the **Usage** section.
