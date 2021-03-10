@@ -48,10 +48,10 @@ I am still in the process of its design, but this may be useful because:
 
 ### Update
 
-Since I attempted a different implementation using PyO3, **usage** is a bit different. You will need **_[Rust](https://www.rust-lang.org/learn/get-started)_** installed on your system in order to build `page-minimizer` with `cargo build --release`, for I am not including its `.so` file.
+Since I attempted a different implementation using PyO3, **usage** is a bit different. You will need **_[Rust](https://www.rust-lang.org/learn/get-started)_** installed on your system in order to build `page-minimizer` with `cargo build --release`, for I am not including its `.so` file. For more info, visit [PyO3 user guide](https://pyo3.rs/v0.12.4/).
 
 Then, you will have to rename `libpage_minimizer.so` to `page_minimizer.so` and move the file to the source directory where `minimize.py` resides in.
 
 With that being done, you should be able to run it following the **Usage** section...
 
-If that sounds annoying (it would at least be annoying to me :P), `git checkout f3326bf` and you should be able to ignore these steps.
+If that sounds annoying (It would at least be annoying to me :P), `git checkout f3326bf` and you should be able to ignore these steps.
