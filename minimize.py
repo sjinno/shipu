@@ -17,37 +17,6 @@ template = env.get_template('recipe_template.html')
 index_temp = env.get_template('index.html')
 
 
-# # Scraping happens here.
-# def get_recipe_context(url):
-#     r = requests.get(url, auth=('user', 'pass'))
-#     if r.status_code == 200:
-#         print('Success!')
-#         soup = BeautifulSoup(r.content, 'html.parser')
-#         # CLEANING CLEANING CLEANING:
-#         title = soup.find(class_='recipe-title').text.strip()
-#         photo_url = soup.find(id='main-photo').img.attrs['src']
-#         # == CLEANING INGREDIENTS STARTS HERE ==
-#         names = [name.text for name in soup.find(
-#             id='ingredients').find_all(class_='name')]
-#         amounts = [
-#             amount.text for amount in soup.find(id='ingredients').find_all(class_='amount')
-#         ]
-#         ingredients = list(zip(names, amounts))
-#         # == CLEANING INGREDIENTS ENDS HERE ==
-#         steps = [step.text.strip()
-#                  for step in soup.find_all(class_='step_text')]
-#         # DONE CLEANING :)
-#         ctx = {
-#             'title': title,
-#             'photo_url': photo_url,
-#             'ingredients': ingredients,
-#             'steps': steps,
-#         }
-#         return ctx
-#     else:
-#         print('Something went wrong :(')
-
-
 def generate_recipe_page(ctx):
     output_file = ctx['title'] + '.html'
     with open(output_file, 'w') as f:
