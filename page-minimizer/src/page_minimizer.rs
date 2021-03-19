@@ -3,6 +3,7 @@ use pyo3::wrap_pyfunction;
 use reqwest::{self, StatusCode};
 use scraper::{Html, Selector};
 
+const URL: &str = "https://cookpad.com/recipe/";
 #[pyclass]
 #[derive(Debug, Default)]
 struct Context {
@@ -17,9 +18,10 @@ struct Context {
 }
 
 #[pyfunction]
-fn get_recipe_context(url: &str) -> Context {
+fn get_recipe_context(recipe_id: &str) -> Context {
+    let url = format!("{}{}", URL, recipe_id);
     let mut ctx = Context::default();
-    let res = reqwest::blocking::get(url).unwrap();
+    let res = reqwest::blocking::get(url.as_str()).unwrap();
     match res.status() {
         StatusCode::OK => {
             let body = res.text().unwrap();

@@ -40,7 +40,10 @@ def update_index_page(recipe_ls):
 
 
 def main():
-    ctx = page_minimizer.get_recipe_context(url)
+    # Get environment varibale:
+    recipe_id = sys.argv[1]  # 1 https://cookpad.com/recipe/1847041 - メンチカツ
+    print(f'{recipe_id}')
+    ctx = page_minimizer.get_recipe_context(recipe_id)
     recipe_ctx = {
         'title': ctx.title,
         'photo_url': ctx.photo_url,
@@ -54,7 +57,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # Get environment varibale:
-    url = sys.argv[1]  # 1 https://cookpad.com/recipe/1847041 - メンチカツ
-    print(f'{url}')
     main()

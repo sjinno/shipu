@@ -27,10 +27,10 @@ I am still in the process of its design, but this may be useful because:
    git clone https://github.com/sjinno/shipu.git
    ```
 
-   After that, simply go copy the url of your favorite recipe from クックパッド and run
+   After that, simply go copy the recipe ID of your favorite recipe from クックパッド and run
 
    ```
-   pipenv run python minimize.py your-fav-reciepe-url
+   pipenv run python minimize.py your-fav-reciepe-id
    ```
 
 2. If you do not have `pipenv` installed, then you can use `virtualenv`.
@@ -38,12 +38,14 @@ I am still in the process of its design, but this may be useful because:
    So, you would `virtualenv env`, `source ./env/bin/activate`, `pip install -r requirements.txt`, and run
 
    ```
-   python minimize.py your-fav-reciepe-url
+   python minimize.py your-fav-reciepe-id
    ```
 
    ```
    # e.g.
-   python minimize.py https://cookpad.com/recipe/1847041
+   # Suppose the url of your favorite recipe is `https://cookpad.com/recipe/1847041`,
+   # then you run:
+   python minimize.py 1847041
    ```
 
 ### Update
