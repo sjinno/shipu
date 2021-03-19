@@ -35,7 +35,7 @@ I am still in the process of its design, but this may be useful because:
 
 2. If you do not have `pipenv` installed, then you can use `virtualenv`.
 
-   So, you would `virtualenv env`, `source ./env/bin/activate`, `pip install -r requirements,txt`, and run
+   So, you would `virtualenv env`, `source ./env/bin/activate`, `pip install -r requirements.txt`, and run
 
    ```
    python minimize.py your-fav-reciepe-url
@@ -54,4 +54,4 @@ Then, you will have to rename `libpage_minimizer.so` to `page_minimizer.so` and 
 
 With that being done, you should be able to run it following the **Usage** section...
 
-If that sounds annoying (It would at least be annoying to me :P), alternatively (**ACTUALLY THIS IS RECOMMANDED FOR NOW.**) you can simply `git checkout python` and you should be able to ignore these steps and just follow the **Usage** section.
+If that sounds annoying (It would at least be annoying to me :P), alternatively (could be more stable) you can simply `git checkout python` and you should be able to ignore these steps and just follow the **Usage** section.
