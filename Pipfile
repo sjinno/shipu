@@ -6,10 +6,19 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-requests = "*"
-beautifulsoup4 = "*"
-jinja2 = "*"
+requests = "==2.25.1"
+beautifulsoup4 = "==4.9.3"
 black = "*"
+autopep8 = "==1.5.5"
+certifi = "==2020.12.5"
+chardet = "==4.0.0"
+idna = "==2.10"
+pycodestyle = "==2.6.0"
+soupsieve = "==2.2"
+toml = "==0.10.2"
+urllib3 = "==1.26.3"
+Jinja2 = "==2.11.3"
+MarkupSafe = "==1.1.1"
 
 [requires]
 python_version = "3.9"

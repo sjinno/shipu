@@ -1,6 +1,5 @@
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
-
 use reqwest::{self, StatusCode};
 use scraper::{Html, Selector};
 
@@ -95,17 +94,10 @@ fn get_steps(fragment: &Html) -> Vec<String> {
     let steps_selector = Selector::parse(r#"div[id="steps"]"#).unwrap();
     let step_selector = Selector::parse(r#"p[class="step_text"]"#).unwrap();
     let steps_to_iter = fragment.select(&steps_selector).next().unwrap();
-    let a_selector = Selector::parse("a").unwrap();
     steps_to_iter
         .select(&step_selector)
-        .map(|step| {
-            if let Some(s) = step.select(&a_selector).next() {
-                s.inner_html().replace("<br>", "")
-            } else {
-                step.inner_html().replace("<br>", "")
-            }
-        })
-        .collect()
+        .map(|step| step.text().collect::<String>())
+        .collect::<Vec<_>>()
 }
 
 /// A Python module implemented in Rust.
