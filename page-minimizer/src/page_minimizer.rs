@@ -1,9 +1,11 @@
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
+
 use reqwest::{self, StatusCode};
 use scraper::{Html, Selector};
 
 const URL: &str = "https://cookpad.com/recipe/";
+
 #[pyclass]
 #[derive(Debug, Default)]
 struct Context {
